@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/server",
+    "target": "es2020",
+    "lib": ["es2020", "dom"],
+    "sourceMap": false,
+    "inlineSourceMap": false,
+    "allowJs": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "noEmitOnError": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "importHelpers": true,
+    "strictNullChecks": true,
+    "strict": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@intf/*": ["src/__intf/*"],
+      "@webapp/*": ["src/webapp/*"],
+      "@webapp/intf/*": ["src/webapp/__intf/*"],
+      "@webapp/config/*": ["src/webapp/config/*"]
+    }
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

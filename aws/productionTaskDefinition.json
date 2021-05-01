@@ -1,0 +1,58 @@
+{
+  "executionRoleArn": "arn:aws:iam::916768316819:role/ecs_task_execution_role",
+  "containerDefinitions": [
+    {
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/<your_project>_production_task",
+          "awslogs-region": "eu-west-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "cpu": 0,
+      "environment": [
+        {
+          "name": "LOG_FORMAT",
+          "value": "cloudwatch"
+        },
+        {
+          "name": "PORT",
+          "value": "80"
+        }
+      ],
+      "mountPoints": [],
+      "memoryReservation": 300,
+      "volumesFrom": [],
+      "image": "916768316819.dkr.ecr.eu-west-1.amazonaws.com/<your_project>_releases:<your_project>_main_latest",
+      "healthCheck": {
+        "retries": 3,
+        "command": [
+          "CMD-SHELL",
+          "curl -f http://localhost:80/healthz || exit 1"
+        ],
+        "timeout": 10,
+        "interval": 30,
+        "startPeriod": 20
+      },
+      "essential": true,
+      "name": "<your_project>_production_container"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "512",
+  "family": "<your_project>_production_task",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "volumes": []
+}
